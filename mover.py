@@ -6,6 +6,8 @@ import os
 cwd = os.getcwd()
 # path to move
 toMove = os.path.join(os.getcwd(), "moved")
+# get all the files in the cwd
+dirFiles = os.listdir(cwd)
 
 # create a new folder if it doesn't exist
 if not os.path.exists(toMove):
@@ -21,12 +23,12 @@ with open('move.txt', 'r') as files:
 		# append the file name to list
 		list.append(str(file).strip())
 		# get a list of files in the cwd
-		for f in os.listdir(cwd):
+		for df in dirFiles:
 			# if string name matches file name or a part of it matches
 			if str(file).strip() in str(f):
-				temp = toMove+"\\"+f
+				temp = toMove+"\\"+df
 				# move the file
-				os.rename(cwd+'\\'+f, temp)
+				os.rename(cwd+'\\'+df, temp)
 				# remove the string from list
 				list.remove(str(file).strip())
 # if list is empty all files moved successfully, otherwise shows a list of strings whose corresponding files were not found
