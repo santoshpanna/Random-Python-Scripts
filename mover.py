@@ -1,6 +1,7 @@
 #move files matched with the string in move.txt
 
 import os
+from shutil import copyfile
 
 # getting the current path
 cwd = os.getcwd()
@@ -25,10 +26,10 @@ with open('move.txt', 'r') as files:
 		# get a list of files in the cwd
 		for df in dirFiles:
 			# if string name matches file name or a part of it matches
-			if str(file).strip() in str(f):
+			if str(file).strip() in str(df):
 				temp = toMove+"\\"+df
 				# move the file
-				os.rename(cwd+'\\'+df, temp)
+				copyfile(cwd+'\\'+df, temp)
 				# remove the string from list
 				list.remove(str(file).strip())
 # if list is empty all files moved successfully, otherwise shows a list of strings whose corresponding files were not found
